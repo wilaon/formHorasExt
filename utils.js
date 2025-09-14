@@ -92,13 +92,3 @@ function llenarSelect(selectElement, opciones){
         selectElement.appendChild(option);
     });
 }
-
-
-function obtenerIngTurno(){
-    return [
-        { value: '', texto: 'Seleccionar Ingeniero...' },
-        { value: 'juanperez', texto: 'Ing. Juan Pérez' },
-        { value: 'mariolopez', texto: 'Ing. Mario López' },
-        { value: 'anatorres', texto: 'Ing. Ana Torres' }
-    ];
-}

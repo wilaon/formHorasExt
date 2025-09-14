@@ -51,17 +51,6 @@ async function guardarAsistencia(datos) {
         // Calcular horas
         const calculo = calcularHoras(datos.horaEntrada, datos.horaSalida);
         
-        let firmaParaGuardar = '';
-        if (datos.firmaColab && datos.firmaColab.length > 0) {
-            // Si la firma es muy larga, marcar que existe pero no guardar el contenido completo
-            if (datos.firmaColab.length > 5000) {
-                console.log('Firma muy grande, guardando indicador');
-                firmaParaGuardar = 'FIRMA_REGISTRADA_' + new Date().getTime();
-            } else {
-                firmaParaGuardar = datos.firmaColab;
-            }
-        }
-        
         // Preparar fila
         const fila = [
             new Date().toISOString(),
