@@ -26,6 +26,13 @@ function actualizarReloj() {
 }
 
 
+function actualizarCalculoHoras() {
+    const calculo = calcularHoras(elementos.horaEntrada.value, elementos.horaSalida.value);
+     mostrarElemento(elementos.hoursInfo, false);
+    
+}
+
+
 // Validar DNI
 function validarDNI(dni) {
     if (dni.length === CONFIG.DNI_LENGTH) {
