@@ -1,0 +1,157 @@
+// Lógica principal de la aplicación
+
+// Referencias a elementos DOM
+const elementos = {
+    form: document.getElementById('attendanceForm'),
+    fecha: document.getElementById('fecha'),
+    dni: document.getElementById('dni'),
+    nombre: document.getElementById('nombre'),
+    horaEntrada: document.getElementById('horaEntrada'),
+    horaSalida: document.getElementById('horaSalida'),
+    turno: document.getElementById('turno'),
+    observaciones: document.getElementById('observaciones'),
+    submitBtn: document.getElementById('submitBtn'),
+    dniValidation: document.getElementById('dniValidation'),
+    hoursInfo: document.getElementById('hoursInfo'),
+    loading: document.getElementById('loading'),
+    successMessage: document.getElementById('successMessage'),
+    errorMessage: document.getElementById('errorMessage'),
+    clock: document.getElementById('clock'),
+
+};
+
+// Actualizar reloj
+function actualizarReloj() {
+    elementos.clock.textContent = formatearFechaHora();
+}
+
+
+// Validar DNI
+function validarDNI(dni) {
+    if (dni.length === CONFIG.DNI_LENGTH) {
+        const empleado = buscarEmpleado(dni);
+        console.log('empleado encontrado',empleado);
+        //busca nombre del empleado en minuscula o MAYUSCULA
+        if (empleado && (empleado.nombre ||empleado.NOMBRE)) {
+            elementos.nombre.value = empleado.nombre || empleado.NOMBRE || '';
+            elementos.nombre.readOnly = true;
+            elementos.dniValidation.textContent = 'Empleado encontrado';
+            elementos.dniValidation.className = 'validation-message success show';
+            elementos.submitBtn.disabled = false;
+        } else {
+            elementos.nombre.value = '';
+            elementos.nombre.readOnly = false;
+            elementos.dniValidation.textContent = 'DNI no registrado - SOLICITAR REGISTRO';
+            elementos.dniValidation.className = 'validation-message error show';
+            elementos.submitBtn.disabled = true;
+        }
+    } else {
+        elementos.dniValidation.classList.remove('show');
+        elementos.nombre.value = '';
+        elementos.nombre.readOnly = false;
+        elementos.submitBtn.disabled = true;
+    }
+}
+
+// Procesar envío del formulario
+async function procesarFormulario(e) {
+    e.preventDefault();
+    
+    // Validar horas
+    if (!elementos.horaEntrada.value && !elementos.horaSalida.value) {
+        mostrarMensaje(elementos.errorMessage, 'Ingrese al menos hora de entrada o salida');
+        return;
+    }
+
+    if (elementos.horaEntrada.value && elementos.horaSalida.value) {
+    const resultado = calcularHoras(elementos.horaEntrada.value, elementos.horaSalida.value);
+
+    if (!resultado.valido) {
+            mostrarMensaje(
+                elementos.errorMessage, 
+                'El rango de horas no es correcto (${resultado.totalHoras.toFixed(2)} hrs). Debe ser mínimo 8 horas'
+            );
+            return;
+        }
+    }
+    
+
+
+    // Mostrar loading
+    elementos.loading.style.display = 'block';
+    elementos.submitBtn.disabled = true;
+    
+    // Preparar datos
+    const datos = {
+        fecha: elementos.fecha.value,
+        dni: elementos.dni.value,
+        nombre: elementos.nombre.value,
+        horaEntrada: elementos.horaEntrada.value,
+        horaSalida: elementos.horaSalida.value,
+        observaciones: elementos.observaciones.value,
+        turno: elementos.turno.value
+       
+    };
+    
+    // Guardar
+    const resultado = await guardarAsistencia(datos);
+    
+    // Ocultar loading
+    elementos.loading.style.display = 'none';
+    elementos.submitBtn.disabled = false;
+    
+    if (resultado.success) {
+        mostrarMensaje(elementos.successMessage, 'Asistencia registrada correctamente');
+        elementos.form.reset();
+        elementos.fecha.value = obtenerFechaActual();
+        elementos.dniValidation.classList.remove('show');
+        // 3. Habilitar campo nombre
+        elementos.nombre.readOnly = false;
+        limpiarFirma();
+        mostrarElemento(elementos.hoursInfo, false);
+    } else {
+        mostrarMensaje(elementos.errorMessage, 'Error al registrar asistencia');
+    }
+}
+
+// Event Listeners
+function inicializarEventos() {
+    // DNI input
+    elementos.dni.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        e.target.value = value;
+        validarDNI(value);
+    });
+    
+    // Actualizar cálculo de horas
+    elementos.horaEntrada.addEventListener('change', actualizarCalculoHoras);
+    elementos.horaSalida.addEventListener('change', actualizarCalculoHoras);
+    
+    // Submit form
+    elementos.form.addEventListener('submit', procesarFormulario);
+}
+
+// Inicialización
+async function inicializar() {
+    // Establecer fecha actual
+    elementos.fecha.value = obtenerFechaActual();
+    
+    // Iniciar reloj
+    actualizarReloj();
+    setInterval(actualizarReloj, 1000);
+    
+    // Cargar empleados
+    await cargarEmpleados();
+
+    //llenar select Turnos
+    const turnos = obtenerTurnos();
+    llenarSelect(elementos.turno,turnos)
+    
+    // Configurar eventos
+    inicializarEventos();
+    
+    console.log('Sistema iniciado');
+}
+
+// Iniciar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', inicializar);
