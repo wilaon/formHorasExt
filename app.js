@@ -37,7 +37,7 @@ function actualizarCalculoHoras() {
 function validarDNI(dni) {
     if (dni.length === CONFIG.DNI_LENGTH) {
         const empleado = buscarEmpleado(dni);
-        console.log('empleado encontrado',empleado);
+        //console.log('empleado encontrado',empleado);
         //busca nombre del empleado en minuscula o MAYUSCULA
         if (empleado && (empleado.nombre ||empleado.NOMBRE)) {
             elementos.nombre.value = empleado.nombre || empleado.NOMBRE || '';

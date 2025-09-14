@@ -41,7 +41,7 @@ function buscarEmpleado(dni) {
     if (!empleadosCache) return null;
 
     //console.log('Buscando DNI:', dni); // Para debug
-    console.log('Cache disponible:', Object.keys(empleadosCache)); // Para debug
+    //console.log('Cache disponible:', Object.keys(empleadosCache)); // Para debug
     return empleadosCache[dni] || null;
 }
 
