@@ -25,7 +25,7 @@ async function cargarEmpleados(forzar = false) {
             empleadosCache = data.empleados;
             cacheTimestamp = ahora;
 
-            //console.log('Empleados cargados:',Object.keys(empleadosCache).length);
+            console.log('Empleados cargados:',Object.keys(empleadosCache).length);
             return empleadosCache;
         }
         
