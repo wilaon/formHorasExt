@@ -93,3 +93,16 @@ function llenarSelect(selectElement, opciones){
         selectElement.appendChild(option);
     });
 }
+
+function configCalendario() {
+    const hoy = new Date;
+    const _20diasAnt = new Date(hoy);
+    _20diasAnt.setDate(hoy.getDate()-20)
+    
+    const min = _20diasAnt.toISOString().split('T')[0];
+    const max = hoy.toISOString().split('T')[0];
+    
+    elementos.fecha.min = min;
+    elementos.fecha.max = max;
+    elementos.fecha.value = obtenerFechaActual();
+}

@@ -140,6 +140,10 @@ function inicializarEventos() {
 
 // Inicialización
 async function inicializar() {
+
+     // Configurar calendario restringido
+    configCalendario();
+
     // Establecer fecha actual
     elementos.fecha.value = obtenerFechaActual();
     
