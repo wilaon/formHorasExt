@@ -28,8 +28,9 @@ function actualizarReloj() {
 
 function actualizarCalculoHoras() {
     const calculo = calcularHoras(elementos.horaEntrada.value, elementos.horaSalida.value);
-     mostrarElemento(elementos.hoursInfo, false);
-    
+    if (elementos.hoursInfo) {
+        mostrarElemento(elementos.hoursInfo, false);
+    }
 }
 
 

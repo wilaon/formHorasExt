@@ -64,11 +64,11 @@ async function guardarAsistencia(datos) {
             
         ];
 
-        console.log('Enviando fila:', fila);
+        //console.log('Enviando fila:', fila);
         
         await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            mode: 'no-cors',
+            //mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             },
