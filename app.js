@@ -92,11 +92,11 @@ async function procesarFormulario(e) {
     // Preparar datos
     const datos = {
         fecha: elementos.fecha.value,
-        dni: elementos.dni.value,
         nombre: elementos.nombre.value,
         horaEntrada: elementos.horaEntrada.value,
         horaSalida: elementos.horaSalida.value,
         observaciones: elementos.observaciones.value,
+        dni: elementos.dni.value,
         turno: elementos.turno.value
        
     };
