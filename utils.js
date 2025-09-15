@@ -65,17 +65,17 @@ function mostrarMensaje(elemento, texto, duracion = 5000) {
 function obtenerTurnos(){
     return [
         { value: '', texto: 'Seleccionar turno...' },
-        { value: '06:00-15:00', texto: '06:00 - 15:00' },
-        { value: '07:00-16:00', texto: '07:00 - 16:00' },
-        { value: '09:00-18:00', texto: '09:00 - 18:00' },
-        { value: '13:00-20:00', texto: '13:00 - 20:00' },
-        { value: '14:00-21:00', texto: '14:00 - 21:00' },
-        { value: '17:00-23:00', texto: '17:00 - 23:00' },
-        { value: '18:00-00:00', texto: '18:00 - 00:00' },
-        { value: '00:00-06:00', texto: '00:00 - 06:00' },
-        { value: 'descanso1', texto: '1er Día Descanso' },
-        { value: 'descanso2', texto: '2do Día Descanso' },
-        { value: 'feriado', texto: 'Feriado' }
+        { value: '06:00 - 15:00', texto: '06:00 - 15:00' },
+        { value: '07:00 - 16:00', texto: '07:00 - 16:00' },
+        { value: '09:00 - 18:00', texto: '09:00 - 18:00' },
+        { value: '13:00 - 20:00', texto: '13:00 - 20:00' },
+        { value: '14:00 - 21:00', texto: '14:00 - 21:00' },
+        { value: '17:00 - 23:00', texto: '17:00 - 23:00' },
+        { value: '18:00 - 00:00', texto: '18:00 - 00:00' },
+        { value: '00:00 - 06:00', texto: '00:00 - 06:00' },
+        { value: '1er Día Descanso', texto: '1er Día Descanso' },
+        { value: '2do Día Descanso', texto: '2do Día Descanso' },
+        { value: 'Feriado', texto: 'Feriado' }
     ];
 }
 
