@@ -68,7 +68,7 @@ async function guardarAsistencia(datos) {
         
         await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
             method: 'POST',
-            //mode: 'no-cors',
+            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             },
