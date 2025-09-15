@@ -42,6 +42,7 @@ function calcularHoras(entrada, salida) {
 
 // Mostrar/ocultar elemento
 function mostrarElemento(elemento, mostrar = true) {
+    if (!elemento) return; 
     if (mostrar) {
         elemento.classList.add('show');
     } else {
