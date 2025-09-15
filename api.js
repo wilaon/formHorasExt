@@ -55,11 +55,11 @@ async function guardarAsistencia(datos) {
         const fila = [
             new Date().toISOString(),
             datos.fecha,
-            datos.dni,
             datos.nombre,
             datos.horaEntrada || '-',
             datos.horaSalida || '-',
             datos.observaciones || '',
+            datos.dni,
             datos.turno
             
         ];
