@@ -102,7 +102,7 @@ async function procesarFormulario(e) {
     if (turnosEspeciales.includes(turnoSeleccionado)) {
         minimoHoras > 1;
     }else if (turnos8Horas.includes(turnoSeleccionado)) {
-        minimoHoras = 8;
+        minimoHoras = 9;
     } else if (turnos7Horas.includes(turnoSeleccionado)) {
         minimoHoras = 7;
     } else if (turnos6Horas.includes(turnoSeleccionado)) {
