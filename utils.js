@@ -36,7 +36,7 @@ function calcularHoras(entrada, salida) {
     const totalMin = salidaMin - entradaMin;
     const totalHoras = totalMin / 60;
 
-    return { valido: totalHoras >= 8, totalHoras: totalHoras };
+    return  totalHoras;
 
 }
 

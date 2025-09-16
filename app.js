@@ -67,17 +67,62 @@ async function procesarFormulario(e) {
     
     // Validar horas
     if (!elementos.horaEntrada.value && !elementos.horaSalida.value) {
-        mostrarMensaje(elementos.errorMessage, 'Ingrese al menos hora de entrada o salida');
+        mostrarMensaje(elementos.errorMessage, 'Ingrese hora de entrada y salida');
         return;
     }
 
     if (elementos.horaEntrada.value && elementos.horaSalida.value) {
     const resultado = calcularHoras(elementos.horaEntrada.value, elementos.horaSalida.value);
 
-    if (!resultado.valido) {
+    // Turnos de 8 horas
+    const turnos8Horas = ['06:00 - 15:00', '07:00 - 16:00', '09:00 - 18:00'];
+
+    const turnosEspeciales=[
+        '1er Día Descanso',
+        '2do Día Descanso', 
+        'Feriado'
+    ]
+
+    // Turnos de 7 horas
+    const turnos7Horas = [
+        '13:00 - 20:00',
+        '14:00 - 21:00'
+    ];
+    
+    // Turnos de 6 horas
+    const turnos6Horas = [
+        '17:00 - 23:00',
+        '18:00 - 00:00',
+        '00:00 - 06:00'
+    ];
+
+    let mininoHoras = 0;
+
+    if (turnos8Horas.includes(obtenerTurnos)) {
+        mininoHoras = 8;
+    } else if (turnos7Horas.includes(obtenerTurnos)) {
+        mininoHoras = 7;
+    } else if (turnos6Horas.includes(obtenerTurnos)) {
+        mininoHoras = 6;
+    }
+
+
+    if (mininoHoras > 1 && resultado < mininoHoras) {
+        mostrarMensaje(
+            elementos.errorMessage, 
+            `El turno ${turnoSeleccionado} requiere ${horasMinimas} horas. Registró ${totalHoras.toFixed(2)} horas`
+        );
+        return;
+    }
+
+
+
+
+
+    if ( !turnosEspeciales.includes(obtenerTurnos) && !resultado.valido) {
             mostrarMensaje(
                 elementos.errorMessage, 
-                'El rango de horas no es correcto (${resultado.totalHoras.toFixed(2)} hrs). Debe ser mínimo 8 horas'
+                'El rango de horas no es correcto hrs). Debe ser mínimo 8 horas'
             );
             return;
         }
