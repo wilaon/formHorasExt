@@ -114,18 +114,7 @@ async function procesarFormulario(e) {
         );
         return;
     }
-
-
-
-
-
-    if ( !turnosEspeciales.includes(obtenerTurnos) && !resultado.valido) {
-            mostrarMensaje(
-                elementos.errorMessage, 
-                'El rango de horas no es correcto hrs). Debe ser mínimo 8 horas'
-            );
-            return;
-        }
+    
     }
     
 
