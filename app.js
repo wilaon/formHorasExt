@@ -106,11 +106,11 @@ async function procesarFormulario(e) {
     } else if (turnos7Horas.includes(turnoSeleccionado)) {
         minimoHoras = 7;
     } else if (turnos6Horas.includes(turnoSeleccionado)) {
-        mininoHoras = 6;
+        minimoHoras = 6;
     }
 
 
-    if (minimoHoras > 1 && resultado < mininoHoras) {
+    if (minimoHoras > 1 && resultado < minimoHoras) {
         mostrarMensaje(
             elementos.errorMessage, 
             `El turno ${turnoSeleccionado} requiere ${minimoHoras} horas. Registró ${resultado.toFixed(2)} horas`
