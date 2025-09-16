@@ -97,23 +97,23 @@ async function procesarFormulario(e) {
         '00:00 - 06:00'
     ];
 
-    let mininoHoras = 1;
+    let minimoHoras = 1;
 
     if (turnosEspeciales.includes(turnoSeleccionado)) {
-        mininoHoras > 1;
+        minimoHoras > 1;
     }else if (turnos8Horas.includes(turnoSeleccionado)) {
-        mininoHoras = 8;
+        minimoHoras = 8;
     } else if (turnos7Horas.includes(turnoSeleccionado)) {
-        mininoHoras = 7;
+        minimoHoras = 7;
     } else if (turnos6Horas.includes(turnoSeleccionado)) {
         mininoHoras = 6;
     }
 
 
-    if (mininoHoras > 1 && resultado < mininoHoras) {
+    if (minimoHoras > 1 && resultado < mininoHoras) {
         mostrarMensaje(
             elementos.errorMessage, 
-            `El turno ${turnoSeleccionado} requiere ${horasMinimas} horas. Registró ${totalHoras.toFixed(2)} horas`
+            `El turno ${turnoSeleccionado} requiere ${minimoHoras} horas. Registró ${resultado.toFixed(2)} horas`
         );
         return;
     }
