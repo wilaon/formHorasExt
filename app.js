@@ -98,7 +98,9 @@ async function procesarFormulario(e) {
 
     let mininoHoras = 0;
 
-    if (turnos8Horas.includes(obtenerTurnos)) {
+    if (turnosEspeciales.includes(obtenerTurnos)) {
+        mininoHoras > 1;
+    }else if (turnos8Horas.includes(obtenerTurnos)) {
         mininoHoras = 8;
     } else if (turnos7Horas.includes(obtenerTurnos)) {
         mininoHoras = 7;
@@ -114,7 +116,7 @@ async function procesarFormulario(e) {
         );
         return;
     }
-    
+
     }
     
 
