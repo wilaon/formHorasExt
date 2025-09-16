@@ -73,6 +73,7 @@ async function procesarFormulario(e) {
 
     if (elementos.horaEntrada.value && elementos.horaSalida.value) {
     const resultado = calcularHoras(elementos.horaEntrada.value, elementos.horaSalida.value);
+    const turnoSeleccionado = elementos.turno.value;
 
     // Turnos de 8 horas
     const turnos8Horas = ['06:00 - 15:00', '07:00 - 16:00', '09:00 - 18:00'];
@@ -96,15 +97,15 @@ async function procesarFormulario(e) {
         '00:00 - 06:00'
     ];
 
-    let mininoHoras = 0;
+    let mininoHoras = 1;
 
-    if (turnosEspeciales.includes(obtenerTurnos)) {
+    if (turnosEspeciales.includes(turnoSeleccionado)) {
         mininoHoras > 1;
-    }else if (turnos8Horas.includes(obtenerTurnos)) {
+    }else if (turnos8Horas.includes(turnoSeleccionado)) {
         mininoHoras = 8;
-    } else if (turnos7Horas.includes(obtenerTurnos)) {
+    } else if (turnos7Horas.includes(turnoSeleccionado)) {
         mininoHoras = 7;
-    } else if (turnos6Horas.includes(obtenerTurnos)) {
+    } else if (turnos6Horas.includes(turnoSeleccionado)) {
         mininoHoras = 6;
     }
 
