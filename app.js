@@ -113,7 +113,7 @@ async function procesarFormulario(e) {
     if (minimoHoras > 1 && resultado < minimoHoras) {
         mostrarMensaje(
             elementos.errorMessage, 
-            `El turno ${turnoSeleccionado} requiere ${minimoHoras} horas. Registró ${resultado.toFixed(2)} horas`
+            `Las horas ingresadas no estas acorde al minimo de horas del turno seleccionado`
         );
         return;
     }
